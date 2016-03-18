@@ -14,10 +14,11 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:background="@color/primary_dark_material_light"
+        android:layout_alignWithParentIfMissing="false"
         android:layout_below="@+id/imageView3"
-        android:background="@color/primary_dark_material_light">
+        android:layout_alignLeft="@+id/imageView3"
+        android:layout_alignStart="@+id/imageView3">
 
         <TextView
             android:layout_width="wrap_content"
@@ -37,7 +38,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Photo"
-        android:id="@+id/button"
+        android:id="@+id/addPhotoButton"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/ColorAccent" />
@@ -47,8 +48,8 @@
         android:layout_height="wrap_content"
         android:inputType="textMultiLine"
         android:ems="10"
-        android:id="@+id/editText"
-        android:layout_above="@+id/button"
+        android:id="@+id/photoHintEditText"
+        android:layout_above="@+id/addPhotoButton"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="40dp"
         android:hint="Add hints..." />
