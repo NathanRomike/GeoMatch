@@ -26,7 +26,6 @@ public class MainActivity extends AppCompatActivity
 
         this.getSupportActionBar().setTitle(R.string.blank_text);
         this.getSupportActionBar().setDisplayUseLogoEnabled(true);
-        this.getSupportActionBar().setLogo(R.drawable.icon);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
