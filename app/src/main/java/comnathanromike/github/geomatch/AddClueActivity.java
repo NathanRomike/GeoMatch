@@ -27,7 +27,7 @@ public class AddClueActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String photoHints = mAddHint.getText().toString();
-                Intent intent = new Intent(AddClueActivity.this, MainActivity.class);
+                Intent intent = new Intent(AddClueActivity.this, ViewCluesActivity.class);
                 intent.putExtra("photoHints", photoHints);
                 startActivity(intent);
             }

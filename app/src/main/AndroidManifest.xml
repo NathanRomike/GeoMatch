@@ -14,15 +14,22 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".AddClueActivity">
+        <activity android:name=".AddClueActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="comnathanromike.github.geomatch.MainActivity"
-                android:theme="@style/AppTheme.NoActionBar"/>
+                android:theme="@style/AppTheme.NoActionBar"
+                android:value="comnathanromike.github.geomatch.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ViewCluesActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:theme="@style/AppTheme.NoActionBar"
+                android:value="comnathanromike.github.geomatch.MainActivity" />
         </activity>
     </application>
 
