@@ -7,4 +7,6 @@
     <string name="action_settings">Settings</string>
 
     <string name="blank_text">""</string>
+
+    <string name="main_description">GeoMatch is picture based geolocation puzzle game. Choose a picture and guess where it was taken, or take a picture to challenge others!</string>
 </resources>
