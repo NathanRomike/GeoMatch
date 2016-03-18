@@ -16,10 +16,6 @@ public class AddClueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_clue);
 
-        this.getSupportActionBar().setTitle(R.string.blank_text);
-        this.getSupportActionBar().setDisplayUseLogoEnabled(true);
-        this.getSupportActionBar().setLogo(R.drawable.icon);
-
         mAddPhotoButton = (Button) findViewById(R.id.addPhotoButton);
         mAddHint = (EditText) findViewById(R.id.photoHintEditText);
 

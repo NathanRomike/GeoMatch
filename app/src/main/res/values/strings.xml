@@ -8,7 +8,11 @@
 
     <string name="blank_text">""</string>
 
-    <string name="main_description">Choose a picture and guess where it was taken, or take a picture to challenge others!</string>
+    <string name="main_description">
+        Choose a picture and guess where it was taken.
+        \n
+        Take a picture to challenge others.
+    </string>
 
     <string name="about_main">GeoMatch is picture based geolocation puzzle game.</string>
 </resources>

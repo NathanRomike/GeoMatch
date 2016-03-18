@@ -87,9 +87,10 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             Intent intent = new Intent(this, AddClueActivity.class);
-                startActivity(intent);
+            startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-
+            Intent intent = new Intent(this, ViewCluesActivity.class);
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         }
