@@ -11,17 +11,27 @@
         android:id="@+id/imageView3"
         android:src="@drawable/portland" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Create New Puzzle"
-        android:id="@+id/textView3"
-        android:textStyle="bold"
-        android:textColor="@color/ColorSecondaryText"
-        android:textSize="30sp"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/imageView3"
-        android:layout_centerHorizontal="true" />
+        android:background="@color/primary_dark_material_light">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="Create New Puzzle"
+            android:id="@+id/textView3"
+            android:textStyle="bold"
+            android:textColor="@color/ColorIcons"
+            android:textSize="30sp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+    </RelativeLayout>
 
     <Button
         android:layout_width="match_parent"
@@ -31,5 +41,16 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/ColorAccent" />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:layout_above="@+id/button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:hint="Add hints..." />
 
 </RelativeLayout>
