@@ -14,5 +14,6 @@
         Take a picture to challenge others.
     </string>
 
-    <string name="about_main">GeoMatch is picture based geolocation puzzle game.</string>
+    <string name="about_main">GeoMatch is a picture based geolocation puzzle game.</string>
+
 </resources>
