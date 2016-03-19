@@ -22,19 +22,21 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
-        android:background="@color/colorTertiaryPrimary"
+        android:layout_height="56dp"
+        android:background="@color/ColorPrimaryDark"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/smallTab">
+        android:id="@+id/smallTab"
+        android:translationZ="@dimen/design_navigation_elevation"
+        android:elevation="@dimen/design_bottom_sheet_modal_elevation">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/main_description"
             android:id="@+id/textView2"
-            android:textColor="@color/ColorPrimaryText"
+            android:textColor="@color/abc_primary_text_material_dark"
             android:textSize="15sp"
             android:textStyle="bold"
             android:autoText="false"
@@ -51,30 +53,29 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="130dp"
+        android:layout_height="80dp"
         android:layout_above="@+id/smallTab"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:background="@color/ColorPrimary"
-        android:id="@+id/appName">
+        android:id="@+id/appName"
+        android:elevation="@dimen/design_appbar_elevation">
 
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="SnapMap"
             android:paddingLeft="20dp"
             android:paddingRight="20dp"
             android:id="@+id/textView5"
-            android:textColor="@color/ColorPrimaryText"
-            android:textSize="70sp"
+            android:textColor="@color/abc_primary_text_material_dark"
+            android:textSize="45sp"
             android:textAlignment="center"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:singleLine="true"
             android:layout_centerInParent="true"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
             android:typeface="sans" />
     </RelativeLayout><![CDATA[
 

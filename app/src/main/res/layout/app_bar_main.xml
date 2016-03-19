@@ -25,8 +25,11 @@
         android:layout_below="@+id/textLayout"
         android:src="@drawable/camera"
         android:adjustViewBounds="false"
-        app:layout_anchor="@+id/smallTab"
-        app:layout_anchorGravity="right|end"/>
+        app:layout_anchor="@+id/appName"
+        app:layout_anchorGravity="right|end"
+        android:background="@android:color/transparent"
+        android:cropToPadding="false"
+        app:elevation="@dimen/design_fab_elevation" />
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -34,7 +37,7 @@
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Light"
         app:popupTheme="@style/AppTheme.PopupOverlay"
-        android:background="@color/ColorPrimaryLight">
+        android:background="@android:color/transparent">
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
