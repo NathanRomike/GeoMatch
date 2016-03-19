@@ -32,19 +32,21 @@
         android:background="@color/ColorTransparent"
         app:popupTheme="@style/AppTheme.PopupOverlay">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-        android:text="Welcome to GeoMatch"
-        android:id="@+id/textView"
-        android:textColor="@color/ColorIcons"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        android:shadowColor="@color/ColorSecondaryText"
-        android:elegantTextHeight="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"-->
+        <!--android:text="GeoMatch"-->
+        <!--android:id="@+id/textView"-->
+        <!--android:textColor="@color/ColorIcons"-->
+        <!--android:textSize="40sp"-->
+        <!--android:textStyle="bold"-->
+        <!--android:shadowColor="@color/ColorSecondaryText"-->
+        <!--android:elegantTextHeight="true"-->
+        <!--android:layout_alignParentTop="true"-->
+        <!--android:layout_centerHorizontal="true"-->
+        <!--android:textAlignment="center"-->
+        <!--android:translationZ="1dp" />-->
 
     </android.support.v7.widget.Toolbar>
 
