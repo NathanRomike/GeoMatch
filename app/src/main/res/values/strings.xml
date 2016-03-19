@@ -9,9 +9,9 @@
     <string name="blank_text">""</string>
 
     <string name="main_description">
-        Guess picture locations
-        \n
-        Challenge others with your pictures
+        Search the world. Find the shot. Challenge your friends.
+        <!--\n-->
+        <!--Challenge others with your pictures-->
     </string>
 
     <string name="about_main">GeoMatch is a picture based geolocation puzzle game.</string>

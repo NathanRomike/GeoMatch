@@ -21,16 +21,20 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        android:src="@drawable/camera" />
+        android:layout_margin="30dp"
+        android:layout_below="@+id/textLayout"
+        android:src="@drawable/camera"
+        android:adjustViewBounds="false"
+        app:layout_anchor="@+id/smallTab"
+        app:layout_anchorGravity="right|end"/>
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/ColorTransparent"
-        app:popupTheme="@style/AppTheme.PopupOverlay">
+        android:theme="@style/ThemeOverlay.AppCompat.Light"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:background="@color/ColorPrimaryLight">
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->
