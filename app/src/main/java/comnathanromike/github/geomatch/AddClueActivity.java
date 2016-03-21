@@ -7,17 +7,19 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class AddClueActivity extends AppCompatActivity {
-    private Button mAddPhotoButton;
-    private EditText mAddHint;
+    @Bind(R.id.addPhotoButton) Button mAddPhotoButton;
+    @Bind(R.id.photoHintEditText) EditText mAddHint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_clue);
 
-        mAddPhotoButton = (Button) findViewById(R.id.addPhotoButton);
-        mAddHint = (EditText) findViewById(R.id.photoHintEditText);
+        ButterKnife.bind(this);
 
         mAddPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override

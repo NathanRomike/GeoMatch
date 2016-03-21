@@ -8,18 +8,20 @@ import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.TextView;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+
 public class ViewCluesActivity extends AppCompatActivity {
     public static final String TAG = ViewCluesActivity.class.getSimpleName();
-    private TextView mPhotoHints;
-    private GridView mGridView;
+    @Bind(R.id.hintTextView) TextView mPhotoHints;
+    @Bind(R.id.cluesGridView) GridView mGridView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_clues);
 
-        mPhotoHints = (TextView) findViewById(R.id.hintTextView);
-        mGridView = (GridView) findViewById(R.id.cluesGridView);
+        ButterKnife.bind(this);
 
         mGridView.setAdapter(new ImageAdapter(this));
 
