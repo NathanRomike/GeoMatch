@@ -22,14 +22,25 @@
         android:layout_centerHorizontal="true"
         android:text="TEXT!" />
 
-    <GridView
+    <ListView
         android:layout_width="wrap_content"
         android:layout_height="100dp"
-        android:id="@+id/cluesGridView"
+        android:id="@+id/cluesListView"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/hintTextView"
         android:choiceMode="none"
         android:numColumns="auto_fit" />
+
+    <!--<GridView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:id="@+id/cluesGridView"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentLeft="true"-->
+        <!--android:layout_alignParentStart="true"-->
+        <!--android:layout_below="@+id/hintTextView"-->
+        <!--android:choiceMode="none"-->
+        <!--android:numColumns="auto_fit" />-->
 </RelativeLayout>

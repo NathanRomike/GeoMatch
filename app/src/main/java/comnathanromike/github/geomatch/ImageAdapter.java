@@ -6,6 +6,8 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 /**
  * Created by Guest on 3/18/16.
  */
@@ -42,6 +44,12 @@ public class ImageAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         ImageView imageView = new ImageView(mContext);
+        Picasso
+                .with(mContext)
+                .load("R.drawable.whistler")
+                .fit()
+                .into(imageView);
+
 //        ImageView.setImageResource(sample_clues[position]);
         imageView.setScaleType(ImageView.ScaleType.CENTER_CROP);
         return imageView;
