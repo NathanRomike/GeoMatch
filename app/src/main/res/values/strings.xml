@@ -16,4 +16,8 @@
 
     <string name="about_main">GeoMatch is a picture based geolocation puzzle game.</string>
 
+    <string name="api_key">60c7071d46a06a0f478a46eb41063229</string>
+
+    <string name="api_secret">057b5ba736fb0d8e</string>
+
 </resources>
