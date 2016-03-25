@@ -1,4 +1,4 @@
-package comnathanromike.github.geomatch;
+package comnathanromike.github.geomatch.ui;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,7 @@ import android.widget.EditText;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import comnathanromike.github.geomatch.R;
 
 public class AddClueActivity extends AppCompatActivity {
     @Bind(R.id.addPhotoButton) Button mAddPhotoButton;

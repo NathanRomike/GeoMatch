@@ -1,4 +1,4 @@
-package comnathanromike.github.geomatch;
+package comnathanromike.github.geomatch.adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -7,6 +7,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
+
+import comnathanromike.github.geomatch.R;
 
 /**
  * Created by Guest on 3/18/16.

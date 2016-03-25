@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="comnathanromike.github.geomatch.AddClueActivity"
+    tools:context=".ui.AddClueActivity"
     android:focusable="false"
     android:focusableInTouchMode="true">
 
