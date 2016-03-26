@@ -3,13 +3,19 @@ package comnathanromike.github.geomatch.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.util.Log;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.io.IOException;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
+import comnathanromike.github.geomatch.services.GroupCollectionService;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 public class ViewCluesActivity extends AppCompatActivity {
     public static final String TAG = ViewCluesActivity.class.getSimpleName();
@@ -31,11 +37,6 @@ public class ViewCluesActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-//        mGridView.setAdapter(new ImageAdapter(this));
-
-        ArrayAdapter adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, clues);
-        mListView.setAdapter(adapter);
-
         Intent intent = getIntent();
         String photoHints = intent.getStringExtra("photoHints");
 
@@ -45,6 +46,5 @@ public class ViewCluesActivity extends AppCompatActivity {
         } else {
             mPhotoHints.setText("Clues:");
         }
-
     }
 }
