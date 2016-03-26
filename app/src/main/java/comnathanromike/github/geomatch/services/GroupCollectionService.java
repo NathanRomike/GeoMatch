@@ -2,12 +2,21 @@ package comnathanromike.github.geomatch.services;
 
 import android.content.Context;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
 import comnathanromike.github.geomatch.R;
+import comnathanromike.github.geomatch.models.SnapMapGroup;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.Response;
 import se.akerfeldt.okhttp.signpost.OkHttpOAuthConsumer;
 import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 
@@ -40,5 +49,34 @@ public class GroupCollectionService {
 
         Call call = client.newCall(request);
         call.enqueue(callback);
+    }
+
+    public ArrayList<SnapMapGroup> processResults(Response response) {
+        ArrayList<SnapMapGroup> snapMapGroups = new ArrayList<>();
+
+        try {
+            String jsonData = response.body().string();
+            if (response.isSuccessful()) {
+                JSONObject groupJSON = new JSONObject(jsonData);
+                JSONObject photosJSON = groupJSON.getJSONObject("photos");
+                String totalPhotos = photosJSON.getString("total");
+                JSONArray listOfPhotosArray = photosJSON.getJSONArray("photo");
+                for (int i = 0; i < listOfPhotosArray.length(); i++) {
+                    JSONObject photoJSON = listOfPhotosArray.getJSONObject(i);
+                    String photoId = photoJSON.getString("id");
+                    String ownerId = photoJSON.getString("owner");
+                    String title = photoJSON.getString("title");
+                    String ownerName = photoJSON.getString("ownername");
+
+                    SnapMapGroup snapMapGroup = new SnapMapGroup(totalPhotos, photoId, ownerId, title, ownerName);
+                    snapMapGroups.add(snapMapGroup);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return snapMapGroups;
     }
 }

@@ -3,20 +3,19 @@ package comnathanromike.github.geomatch.models;
 /**
  * Created by nathanromike on 3/25/16.
  */
-public class FlickrGroup {
+public class SnapMapGroup {
     private String mTotalPhotos;
     private String mPhotoId;
     private String mOwnerId;
     private String mTitle;
-    private String mPhotoOwnerId;
+    private String mPhotoOwnerName;
 
-    public FlickrGroup(String totalPhotos, String photoId, String ownerId, String title, String photoOwnerId) {
+    public SnapMapGroup(String totalPhotos, String photoId, String ownerId, String title, String photoOwnerId) {
         this.mTotalPhotos = totalPhotos;
         this.mPhotoId = photoId;
         this.mOwnerId = ownerId;
         this.mTitle = title;
-        this.mPhotoOwnerId = photoOwnerId;
-
+        this.mPhotoOwnerName = photoOwnerId;
     }
 
     public String getTotalPhotos() {
@@ -36,7 +35,7 @@ public class FlickrGroup {
     }
 
     public String getPhotoOwnerId() {
-        return mPhotoOwnerId;
+        return mPhotoOwnerName;
     }
 
 }
