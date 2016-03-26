@@ -16,8 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import comnathanromike.github.geomatch.R;
+import comnathanromike.github.geomatch.models.SnapMapGroup;
 import comnathanromike.github.geomatch.services.GroupCollectionService;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -25,6 +27,8 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+
+    public ArrayList<SnapMapGroup> mSnapPhotos = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +119,7 @@ public class MainActivity extends AppCompatActivity
     private void getPhotosByGroup() {
         final GroupCollectionService groupCollectionService = new GroupCollectionService(this);
 
-        groupCollectionService.findPhotosByTag(new Callback() {
+        groupCollectionService.findPhotosInGroup(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -123,16 +127,20 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
+                mSnapPhotos = groupCollectionService.processResults(response);
 
-                try {
-                    String jsonData = response.body().string();
-
-                    if (response.isSuccessful()) {
-                        Log.v("JSON DATA", jsonData);
+                MainActivity.this.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        String[] photoIds = new String[mSnapPhotos.size()];
+                        for (int i = 0; i < photoIds.length; i++) {
+                            photoIds[i] = mSnapPhotos.get(i).getPhotoId();
+                        }
+                        for (SnapMapGroup snapMapGroup : mSnapPhotos) {
+                            Log.d("RESULTS", "Ids " + snapMapGroup.getPhotoId());
+                        }
                     }
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                });
             }
         });
     }
