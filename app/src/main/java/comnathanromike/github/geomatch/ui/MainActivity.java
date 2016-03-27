@@ -19,8 +19,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import comnathanromike.github.geomatch.R;
-import comnathanromike.github.geomatch.models.SnapMapGroup;
-import comnathanromike.github.geomatch.services.GroupCollectionService;
+import comnathanromike.github.geomatch.models.PuzzlePhoto;
+import comnathanromike.github.geomatch.services.TaggedPhotosService;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.Response;
@@ -28,7 +28,8 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public ArrayList<SnapMapGroup> mSnapPhotos = new ArrayList<>();
+    public ArrayList<PuzzlePhoto> mSnapPhotos = new ArrayList<>();
+    public ArrayList<String> mPhotoIdsList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,12 +103,15 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             Intent intent = new Intent(this, AddClueActivity.class);
+            intent.putStringArrayListExtra("photosIdList", mPhotoIdsList);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(this, ViewCluesActivity.class);
+            Intent intent = new Intent(this, PuzzleListActivity.class);
+            intent.putStringArrayListExtra("photosIdList", mPhotoIdsList);
             startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(this, AboutActivity.class);
+            intent.putStringArrayListExtra("photosIdList", mPhotoIdsList);
             startActivity(intent);
         }
 
@@ -117,7 +121,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void getPhotosByGroup() {
-        final GroupCollectionService groupCollectionService = new GroupCollectionService(this);
+        final TaggedPhotosService groupCollectionService = new TaggedPhotosService(this);
 
         groupCollectionService.findPhotosInGroup(new Callback() {
             @Override
@@ -135,10 +139,12 @@ public class MainActivity extends AppCompatActivity
                         String[] photoIds = new String[mSnapPhotos.size()];
                         for (int i = 0; i < photoIds.length; i++) {
                             photoIds[i] = mSnapPhotos.get(i).getPhotoId();
+                            mPhotoIdsList.add(photoIds.toString());
+                            Log.v("Added", "ID");
                         }
-                        for (SnapMapGroup snapMapGroup : mSnapPhotos) {
-                            Log.d("RESULTS", "Ids " + snapMapGroup.getPhotoId());
-                        }
+//                        for (PuzzlePhoto snapMapGroup : mSnapPhotos) {
+//                            Log.d("RESULTS", "Ids " + snapMapGroup.getTitle());
+//                        }
                     }
                 });
             }

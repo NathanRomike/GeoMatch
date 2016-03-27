@@ -26,7 +26,7 @@
                 android:theme="@style/AppTheme.NoActionBar"
                 android:value=".ui.MainActivity" />
         </activity>
-        <activity android:name=".ui.ViewCluesActivity">
+        <activity android:name=".ui.PuzzleListActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:theme="@style/AppTheme.NoActionBar"

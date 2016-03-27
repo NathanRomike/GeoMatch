@@ -1,7 +1,6 @@
 package comnathanromike.github.geomatch.services;
 
 import android.content.Context;
-import android.util.Log;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -11,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import comnathanromike.github.geomatch.R;
-import comnathanromike.github.geomatch.models.SnapMapGroup;
+import comnathanromike.github.geomatch.models.PuzzlePhoto;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.HttpUrl;
@@ -25,10 +24,10 @@ import se.akerfeldt.okhttp.signpost.SigningInterceptor;
 /**
  * Created by nathanromike on 3/25/16.
  */
-public class GroupCollectionService {
+public class TaggedPhotosService {
     private Context mContext;
 
-    public GroupCollectionService(Context context) {
+    public TaggedPhotosService(Context context) {
         this.mContext = context;
     }
 
@@ -41,7 +40,7 @@ public class GroupCollectionService {
                 .addInterceptor(new SigningInterceptor(consumer))
                 .build();
 
-        HttpUrl.Builder urlBuilder = HttpUrl.parse("https://www.flickr.com/services/rest/?method=flickr.groups.pools.getPhotos&format=json&nojsoncallback=1&group_id=2930075%40N20&").newBuilder();
+        HttpUrl.Builder urlBuilder = HttpUrl.parse("https://www.flickr.com/services/rest/?method=flickr.photos.search&tags=SnapMap&extras=geo%2C+url_s%2C+url_m%2C+url_z&&format=json&nojsoncallback=1").newBuilder();
 
         String url = urlBuilder.build().toString();
 
@@ -53,8 +52,8 @@ public class GroupCollectionService {
         call.enqueue(callback);
     }
 
-    public ArrayList<SnapMapGroup> processResults(Response response) {
-        ArrayList<SnapMapGroup> snapMapGroups = new ArrayList<>();
+    public ArrayList<PuzzlePhoto> processResults(Response response) {
+        ArrayList<PuzzlePhoto> snapMapGroups = new ArrayList<>();
 
         try {
             String jsonData = response.body().string();
@@ -69,9 +68,13 @@ public class GroupCollectionService {
                     String photoId = photoJSON.getString("id");
                     String ownerId = photoJSON.getString("owner");
                     String title = photoJSON.getString("title");
-                    String ownerName = photoJSON.getString("ownername");
+                    Double latitude = photoJSON.getDouble("latitude");
+                    Double longitude = photoJSON.getDouble("longitude");
+                    String thumbnailUrl = photoJSON.getString("url_s");
+                    String mediumPhotoUrl = photoJSON.getString("url_m");
+                    String largePhotoUrl = photoJSON.getString("url_z");
 
-                    SnapMapGroup snapMapGroup = new SnapMapGroup(photoId, ownerId, title, ownerName);
+                    PuzzlePhoto snapMapGroup = new PuzzlePhoto(photoId, ownerId, title, latitude, longitude, thumbnailUrl, mediumPhotoUrl, largePhotoUrl);
                     snapMapGroups.add(snapMapGroup);
                 }
             }
