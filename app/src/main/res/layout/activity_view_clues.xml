@@ -5,42 +5,9 @@
     android:layout_height="match_parent"
     tools:context=".ui.PuzzleListActivity">
 
-    <ImageView
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:id="@+id/imageView4"
-        android:src="@drawable/portland"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recyclerView"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:id="@+id/hintTextView"
-        android:layout_below="@+id/imageView4"
-        android:layout_centerHorizontal="true"
-        android:text="TEXT!" />
-
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="100dp"
-        android:id="@+id/cluesListView"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/hintTextView"
-        android:choiceMode="none"
-        android:numColumns="auto_fit" />
-
-    <!--<GridView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="100dp"-->
-        <!--android:id="@+id/cluesGridView"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:layout_alignParentStart="true"-->
-        <!--android:layout_below="@+id/hintTextView"-->
-        <!--android:choiceMode="none"-->
-        <!--android:numColumns="auto_fit" />-->
 </RelativeLayout>

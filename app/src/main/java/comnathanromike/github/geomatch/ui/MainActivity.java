@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -30,13 +29,14 @@ public class MainActivity extends AppCompatActivity
 
     public ArrayList<PuzzlePhoto> mSnapPhotos = new ArrayList<>();
     public ArrayList<String> mPhotoIdsList = new ArrayList<>();
+    public ArrayList<String> mPhotoMUrls = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        getPhotosByGroup();
+        getPhotosByTag();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -108,6 +108,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_gallery) {
             Intent intent = new Intent(this, PuzzleListActivity.class);
             intent.putStringArrayListExtra("photosIdList", mPhotoIdsList);
+            intent.putStringArrayListExtra("photoMUrls", mPhotoMUrls);
             startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(this, AboutActivity.class);
@@ -120,10 +121,10 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void getPhotosByGroup() {
-        final TaggedPhotosService groupCollectionService = new TaggedPhotosService(this);
+    private void getPhotosByTag() {
+        final TaggedPhotosService taggedPhotosService = new TaggedPhotosService(this);
 
-        groupCollectionService.findPhotosInGroup(new Callback() {
+        taggedPhotosService.findPhotosInGroup(new Callback() {
             @Override
             public void onFailure(Call call, IOException e) {
                 e.printStackTrace();
@@ -131,16 +132,18 @@ public class MainActivity extends AppCompatActivity
 
             @Override
             public void onResponse(Call call, Response response) throws IOException {
-                mSnapPhotos = groupCollectionService.processResults(response);
+                mSnapPhotos = taggedPhotosService.processResults(response);
 
                 MainActivity.this.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
                         String[] photoIds = new String[mSnapPhotos.size()];
+                        String[] photoMUrl = new String[mSnapPhotos.size()];
                         for (int i = 0; i < photoIds.length; i++) {
                             photoIds[i] = mSnapPhotos.get(i).getPhotoId();
+                            photoMUrl[i] = mSnapPhotos.get(i).getMediumPhotoUrl();
                             mPhotoIdsList.add(photoIds.toString());
-                            Log.v("Added", "ID");
+                            mPhotoMUrls.add(photoMUrl.toString());
                         }
 //                        for (PuzzlePhoto snapMapGroup : mSnapPhotos) {
 //                            Log.d("RESULTS", "Ids " + snapMapGroup.getTitle());
