@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import butterknife.Bind;
@@ -56,6 +58,7 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoListAdapter.Phot
         }
 
         public void bindPhoto(PuzzlePhoto photo) {
+            Picasso.with(mContext).load(photo.getMediumPhotoUrl()).into(mMediumImageView);
             mTitleTextView.setText(photo.getTitle());
         }
     }

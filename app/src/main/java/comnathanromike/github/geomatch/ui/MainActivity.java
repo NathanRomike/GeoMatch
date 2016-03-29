@@ -27,16 +27,11 @@ import okhttp3.Response;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    public ArrayList<PuzzlePhoto> mSnapPhotos = new ArrayList<>();
-    public ArrayList<String> mPhotoIdsList = new ArrayList<>();
-    public ArrayList<String> mPhotoMUrls = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        getPhotosByTag();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -103,16 +98,12 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             Intent intent = new Intent(this, AddClueActivity.class);
-            intent.putStringArrayListExtra("photosIdList", mPhotoIdsList);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
             Intent intent = new Intent(this, PuzzleListActivity.class);
-            intent.putStringArrayListExtra("photosIdList", mPhotoIdsList);
-            intent.putStringArrayListExtra("photoMUrls", mPhotoMUrls);
             startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
             Intent intent = new Intent(this, AboutActivity.class);
-            intent.putStringArrayListExtra("photosIdList", mPhotoIdsList);
             startActivity(intent);
         }
 
@@ -121,36 +112,5 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-    private void getPhotosByTag() {
-        final TaggedPhotosService taggedPhotosService = new TaggedPhotosService(this);
 
-        taggedPhotosService.findPhotosInGroup(new Callback() {
-            @Override
-            public void onFailure(Call call, IOException e) {
-                e.printStackTrace();
-            }
-
-            @Override
-            public void onResponse(Call call, Response response) throws IOException {
-                mSnapPhotos = taggedPhotosService.processResults(response);
-
-                MainActivity.this.runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        String[] photoIds = new String[mSnapPhotos.size()];
-                        String[] photoMUrl = new String[mSnapPhotos.size()];
-                        for (int i = 0; i < photoIds.length; i++) {
-                            photoIds[i] = mSnapPhotos.get(i).getPhotoId();
-                            photoMUrl[i] = mSnapPhotos.get(i).getMediumPhotoUrl();
-                            mPhotoIdsList.add(photoIds.toString());
-                            mPhotoMUrls.add(photoMUrl.toString());
-                        }
-//                        for (PuzzlePhoto snapMapGroup : mSnapPhotos) {
-//                            Log.d("RESULTS", "Ids " + snapMapGroup.getTitle());
-//                        }
-                    }
-                });
-            }
-        });
-    }
 }
