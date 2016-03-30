@@ -1,4 +1,4 @@
-# GeoMatch - Android
+# SnapMap for Android
 
 ##### 3.18.2016.
 
@@ -6,7 +6,7 @@
 
 ## Description
 
-> This application is to test my knowledge of building android application with Java. Lets make awesome stuff together!
+> SnapMap is a photo location puzzle game. Guess where a puzzle photo was taken, or upload photos for others to guess!
 
 ## Setup
 
