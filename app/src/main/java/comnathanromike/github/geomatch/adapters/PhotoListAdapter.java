@@ -1,6 +1,7 @@
 package comnathanromike.github.geomatch.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,12 +11,15 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import org.parceler.Parcels;
+
 import java.util.ArrayList;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
 import comnathanromike.github.geomatch.models.PuzzlePhoto;
+import comnathanromike.github.geomatch.ui.PuzzleListActivity;
 
 /**
  * Created by nathanromike on 3/27/16.
@@ -55,6 +59,17 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoListAdapter.Phot
             super(itemView);
             ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            itemView.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View view) {
+                    int itemPosition = getLayoutPosition();
+                    Intent intent = new Intent(mContext, PuzzleListActivity.class);
+                    intent.putExtra("position", itemPosition + "");
+                    intent.putExtra("photos", Parcels.wrap(mPuzzlePhotos));
+                    mContext.startActivity(intent);
+                }
+            });
         }
 
         public void bindPhoto(PuzzlePhoto photo) {
