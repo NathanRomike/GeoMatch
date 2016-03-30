@@ -2,6 +2,7 @@ package comnathanromike.github.geomatch.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -13,10 +14,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
+import butterknife.Bind;
 import comnathanromike.github.geomatch.R;
 import comnathanromike.github.geomatch.models.PuzzlePhoto;
 import comnathanromike.github.geomatch.services.TaggedPhotosService;
@@ -26,7 +31,7 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-
+    @Bind(R.id.mainBackgroundImg) ImageView mBackgroundImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +41,7 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+//        Picasso.with(MainActivity.this).load(R.drawable.background).into(mBackgroundImageView);
         this.getSupportActionBar().setTitle(R.string.blank_text);
         this.getSupportActionBar().setDisplayUseLogoEnabled(true);
 
@@ -43,7 +49,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                capturePhoto()
+                capturePhoto();
             }
         });
 
@@ -114,7 +120,7 @@ public class MainActivity extends AppCompatActivity
     public void capturePhoto() {
     Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
     if (intent.resolveActivity(getPackageManager()) != null) {
-        startActivityForResult(intent);
+        startActivity(intent);
     }
 }
 
