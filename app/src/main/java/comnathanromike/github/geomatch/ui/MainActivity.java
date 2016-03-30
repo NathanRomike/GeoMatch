@@ -43,8 +43,7 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "This will open existing camera application!", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                capturePhoto()
             }
         });
 
@@ -111,6 +110,13 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+    
+    public void capturePhoto() {
+    Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
+    if (intent.resolveActivity(getPackageManager()) != null) {
+        startActivityForResult(intent);
+    }
+}
 
 
 }
