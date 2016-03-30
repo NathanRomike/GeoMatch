@@ -1,8 +1,12 @@
 package comnathanromike.github.geomatch.models;
 
+import org.parceler.Parcel;
+
 /**
  * Created by nathanromike on 3/25/16.
  */
+
+@Parcel
 public class PuzzlePhoto {
     private String mPhotoId;
     private String mOwnerId;
@@ -12,6 +16,8 @@ public class PuzzlePhoto {
     private String mThumbnailUrl;
     private String mMediumPhotoUrl;
     private String mLargePhotoUrl;
+
+    public PuzzlePhoto() {}
 
     public PuzzlePhoto(String photoId, String ownerId, String title, Double latitude, Double longitude, String thumbnailUrl, String mediumPhotoUrl, String largePhotoUrl) {
         this.mPhotoId = photoId;

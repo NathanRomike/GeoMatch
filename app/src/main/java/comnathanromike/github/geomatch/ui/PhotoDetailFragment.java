@@ -19,7 +19,7 @@ import comnathanromike.github.geomatch.R;
 import comnathanromike.github.geomatch.models.PuzzlePhoto;
 
 public class PhotoDetailFragment extends Fragment {
-    @Bind(R.id.mediumPhotoImageView) ImageView mImageMedium;
+    @Bind(R.id.photoImageView) ImageView mImageMedium;
     private PuzzlePhoto mPuzzlePhoto;
 
     public PhotoDetailFragment() {}
@@ -35,7 +35,8 @@ public class PhotoDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mImageMedium = Parcels.unwrap(getArguments().getParcelable("photo"));
+
+        mPuzzlePhoto = Parcels.unwrap(getArguments().getParcelable("photo"));
     }
 
     @Override
@@ -44,7 +45,9 @@ public class PhotoDetailFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_photo_detail, container, false);
         ButterKnife.bind(this, view);
 
-        Picasso.with(view.getContext()).load(mPuzzlePhoto.getMediumPhotoUrl()).into(mImageMedium);
+        Picasso.with(view.getContext())
+                .load(mPuzzlePhoto.getMediumPhotoUrl())
+                .into(mImageMedium);
         return view;
     }
 }
