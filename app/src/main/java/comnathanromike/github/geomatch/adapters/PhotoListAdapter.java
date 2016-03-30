@@ -19,7 +19,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
 import comnathanromike.github.geomatch.models.PuzzlePhoto;
-import comnathanromike.github.geomatch.ui.PuzzleListActivity;
+import comnathanromike.github.geomatch.ui.PhotoDetailActivity;
 
 /**
  * Created by nathanromike on 3/27/16.
@@ -57,14 +57,14 @@ public class PhotoListAdapter extends RecyclerView.Adapter<PhotoListAdapter.Phot
 
         public PhotoViewHolder(View itemView) {
             super(itemView);
-            ButterKnife.bind(this, itemView);
             mContext = itemView.getContext();
+            ButterKnife.bind(this, itemView);
             itemView.setOnClickListener(new View.OnClickListener() {
 
                 @Override
                 public void onClick(View view) {
                     int itemPosition = getLayoutPosition();
-                    Intent intent = new Intent(mContext, PuzzleListActivity.class);
+                    Intent intent = new Intent(mContext, PhotoDetailActivity.class);
                     intent.putExtra("position", itemPosition + "");
                     intent.putExtra("photos", Parcels.wrap(mPuzzlePhotos));
                     mContext.startActivity(intent);
