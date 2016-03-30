@@ -12,7 +12,7 @@
 
 *  Clone repository to local machine
 *  Start android studio
-*  Select GeoMatch application
+*  Select SnapMap application
 *  Enter Ctrl+R and select emulator, or connected android device
 
 ## Technologies Used
