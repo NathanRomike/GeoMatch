@@ -17,7 +17,8 @@
         android:background="@color/ColorPrimaryLight"
         android:scaleType="centerCrop"
         android:layout_above="@+id/appName"
-        android:alpha=".9" />
+        android:alpha=".9"
+        android:src="@drawable/background" />
 
     <RelativeLayout
         android:layout_width="match_parent"
