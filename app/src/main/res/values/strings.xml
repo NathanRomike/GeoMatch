@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">GeoMatch</string>
+    <string name="app_name">SnapMap</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -14,12 +14,15 @@
         <!--Challenge others with your pictures-->
     </string>
 
-    <string name="about_main">GeoMatch is a picture based geolocation puzzle game.</string>
+    <string name="about_main">SnapMap is a picture based geolocation puzzle game.</string>
 
     <string name="api_key">60c7071d46a06a0f478a46eb41063229</string>
 
     <string name="api_secret">057b5ba736fb0d8e</string>
 
     <string name="firebase_url">https://snapmapapp.firebaseio.com/</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

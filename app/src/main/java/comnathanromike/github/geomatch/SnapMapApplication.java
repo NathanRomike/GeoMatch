@@ -1,8 +1,8 @@
+package comnathanromike.github.geomatch;
+
 import android.app.Application;
 
 import com.firebase.client.Firebase;
-
-import comnathanromike.github.geomatch.R;
 
 /**
  * Created by nathanromike on 4/1/16.
