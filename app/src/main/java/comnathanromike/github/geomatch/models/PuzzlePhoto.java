@@ -8,57 +8,57 @@ import org.parceler.Parcel;
 
 @Parcel
 public class PuzzlePhoto {
-    private String mPhotoId;
-    private String mOwnerId;
-    private String mTitle;
-    private Double mLatitude;
-    private Double mLongitude;
-    private String mThumbnailUrl;
-    private String mMediumPhotoUrl;
-    private String mLargePhotoUrl;
+    private String photoId;
+    private String ownerId;
+    private String title;
+    private Double latitude;
+    private Double longitude;
+    private String thumbnailUrl;
+    private String mediumPhotoUrl;
+    private String largePhotoUrl;
 
     public PuzzlePhoto() {}
 
     public PuzzlePhoto(String photoId, String ownerId, String title, Double latitude, Double longitude, String thumbnailUrl, String mediumPhotoUrl, String largePhotoUrl) {
-        this.mPhotoId = photoId;
-        this.mOwnerId = ownerId;
-        this.mTitle = title;
-        this.mLatitude = latitude;
-        this.mLongitude = longitude;
-        this.mThumbnailUrl = thumbnailUrl;
-        this.mMediumPhotoUrl = mediumPhotoUrl;
-        this.mLargePhotoUrl = largePhotoUrl;
+        this.photoId = photoId;
+        this.ownerId = ownerId;
+        this.title = title;
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.thumbnailUrl = thumbnailUrl;
+        this.mediumPhotoUrl = mediumPhotoUrl;
+        this.largePhotoUrl = largePhotoUrl;
     }
 
     public String getPhotoId() {
-        return mPhotoId;
+        return photoId;
     }
 
     public String getOwnerId() {
-        return mOwnerId;
+        return ownerId;
     }
 
     public String getTitle() {
-        return mTitle;
+        return title;
     }
 
     public Double getLatitude() {
-        return mLatitude;
+        return latitude;
     }
 
     public Double getLongitude() {
-        return mLongitude;
+        return longitude;
     }
 
     public String getThumbnailUrl() {
-        return mThumbnailUrl;
+        return thumbnailUrl;
     }
 
     public String getMediumPhotoUrl() {
-        return mMediumPhotoUrl;
+        return mediumPhotoUrl;
     }
 
     public String getLargePhotoUrl() {
-        return mLargePhotoUrl;
+        return largePhotoUrl;
     }
 }

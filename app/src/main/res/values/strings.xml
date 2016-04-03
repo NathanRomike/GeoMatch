@@ -4,7 +4,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
-    <string name="action_settings">User Name Here!</string>
+    <string name="login">Login</string>
 
     <string name="blank_text">""</string>
 
@@ -21,8 +21,5 @@
     <string name="api_secret">057b5ba736fb0d8e</string>
 
     <string name="firebase_url">https://snapmapapp.firebaseio.com/</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="comnathanromike.github.geomatch.Fragments.LoginFragment"
-    android:background="@color/ColorPrimary">
+    android:background="@color/ColorPrimary"
+    android:focusableInTouchMode="true"
+    android:focusable="false">
 
     <TextView
         android:layout_width="match_parent"
@@ -21,7 +23,7 @@
         android:layout_alignParentTop="true"
         android:paddingTop="55dp"
         android:paddingBottom="55dp"
-        android:background="@color/colorTertiaryPrimary"/>
+        android:background="@color/ColorTransparent"/>
 
     <LinearLayout
         android:orientation="vertical"
@@ -35,7 +37,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_below="@+id/textView4">
+        android:layout_below="@+id/textView4"
+        android:id="@+id/linearLayout">
 
         <EditText
             android:id="@+id/emailEditText"
@@ -43,9 +46,10 @@
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
             android:hint="Email"
-            android:textColorHint="@color/ColorPrimaryText"
+            android:textColorHint="@color/abc_primary_text_material_dark"
             android:layout_marginTop="30dp"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textColor="@color/abc_primary_text_material_dark" />
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -54,8 +58,9 @@
             android:inputType="textPassword"
             android:padding="10dp"
             android:hint="Password"
-            android:textColorHint="@color/ColorPrimaryText"
-            android:textSize="20sp"/>
+            android:textColorHint="@color/abc_primary_text_material_dark"
+            android:textSize="20sp"
+            android:textColor="@color/abc_primary_text_material_dark" />
 
         <Button
             android:id="@+id/passwordLoginButton"
@@ -65,7 +70,7 @@
             android:text="Log in"
             android:background="@color/ColorAccent"
             android:layout_marginTop="15dp"
-            android:textColor="@color/ColorPrimaryText" />
+            android:textColor="@color/abc_primary_text_material_dark" />
 
         <Button
             android:id="@+id/registerButton"
@@ -75,8 +80,17 @@
             android:text="Register"
             android:background="@color/ColorAccent"
             android:layout_marginTop="15dp"
-            android:textColor="@color/ColorPrimaryText" />
+            android:textColor="@color/abc_primary_text_material_dark" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/errorTextView"
+        android:layout_above="@+id/linearLayout"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/abc_primary_text_material_dark" />
 
 </RelativeLayout>
