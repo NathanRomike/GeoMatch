@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
         android:layout_below="@+id/textLayout"
-        android:src="@drawable/camera"
+        android:src="@android:drawable/ic_media_play"
         android:adjustViewBounds="false"
         app:layout_anchor="@+id/appName"
         app:layout_anchorGravity="right|end"
@@ -35,10 +35,11 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark"
+        android:theme="@style/Theme.Design.Light"
         app:popupTheme="@style/AppTheme.PopupOverlay"
-        android:background="@color/ColorPrimary"
-        android:alpha="1">
+        android:background="@color/ColorTransparent"
+        android:alpha="1"
+        android:visibility="gone">
 
     <!--<TextView-->
         <!--android:layout_width="wrap_content"-->

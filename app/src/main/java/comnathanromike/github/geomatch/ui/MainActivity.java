@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import butterknife.Bind;
+import comnathanromike.github.geomatch.Fragments.IntroFragment;
 import comnathanromike.github.geomatch.Fragments.LoginFragment;
 import comnathanromike.github.geomatch.R;
 import comnathanromike.github.geomatch.models.PuzzlePhoto;
@@ -51,7 +52,9 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                capturePhoto();
+                FragmentManager fm = getSupportFragmentManager();
+                IntroFragment introFragment = IntroFragment.newInstance();
+                introFragment.show(fm, "intro_fragment");
             }
         });
 

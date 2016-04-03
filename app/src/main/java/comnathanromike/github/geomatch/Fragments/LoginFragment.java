@@ -20,6 +20,8 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 
+import java.util.Map;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
@@ -64,7 +66,7 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
             loginWithPassword();
         }
         if (view == mRegisterButton) {
-
+            registerNewUser();
         }
     }
 
@@ -86,5 +88,23 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
                 mErrorTextView.setText(firebaseError.toString());
             }
         };
+    }
+
+    public void registerNewUser() {
+        final String email = mEmailEditText.getText().toString();
+        final String password = mPasswordEditText.getText().toString();
+
+        mFirebaseRef.createUser(email, password, new Firebase.ValueResultHandler<Map<String, Object>>() {
+
+            @Override
+            public void onSuccess(Map<String, Object> stringObjectMap) {
+                mFirebaseRef.authWithPassword(email, password, mAuthResultHandler);
+            }
+
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                mErrorTextView.setText(firebaseError.toString());
+            }
+        });
     }
 }
