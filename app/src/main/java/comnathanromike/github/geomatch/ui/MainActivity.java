@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -17,20 +16,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 
-import com.squareup.picasso.Picasso;
-
-import java.io.IOException;
-import java.util.ArrayList;
-
 import butterknife.Bind;
-import comnathanromike.github.geomatch.Fragments.IntroFragment;
-import comnathanromike.github.geomatch.Fragments.LoginFragment;
+import comnathanromike.github.geomatch.fragments.IntroFragment;
+import comnathanromike.github.geomatch.fragments.LoginFragment;
 import comnathanromike.github.geomatch.R;
-import comnathanromike.github.geomatch.models.PuzzlePhoto;
-import comnathanromike.github.geomatch.services.TaggedPhotosService;
-import okhttp3.Call;
-import okhttp3.Callback;
-import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {

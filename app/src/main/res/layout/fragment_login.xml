@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="comnathanromike.github.geomatch.Fragments.LoginFragment"
+    tools:context="comnathanromike.github.geomatch.fragments.LoginFragment"
     android:background="@color/ColorPrimary"
     android:focusableInTouchMode="true"
     android:focusable="false">

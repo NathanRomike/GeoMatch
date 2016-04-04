@@ -2,18 +2,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.IntroFragment"
+    tools:context=".fragments.IntroFragment"
     android:background="@color/ColorPrimaryLight">
 
     <RelativeLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="true"
-        android:id="@+id/next_form"
-        android:layout_above="@+id/login_form">
+        android:id="@+id/next_form">
 
         <Button
             android:layout_width="match_parent"
@@ -21,9 +20,10 @@
             android:text="Login"
             android:id="@+id/loginButton"
             android:background="@color/ColorAccent"
-            android:layout_alignParentBottom="true"
+            android:layout_below="@+id/startButton"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:layout_margin="10dp" />
 
         <Button
             android:layout_width="fill_parent"
@@ -31,8 +31,8 @@
             android:text="Start"
             android:id="@+id/startButton"
             android:background="@color/ColorAccent"
-            android:layout_above="@+id/login_form"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp" />
 
     </RelativeLayout>
 
@@ -44,8 +44,20 @@
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:visibility="invisible"
-        android:layout_marginTop="15dp">
+        android:layout_marginTop="15dp"
+        android:layout_below="@id/next_form"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:id="@+id/errorTextView"
+            android:layout_gravity="center_horizontal"
+            android:textSize="30sp"
+            android:textColor="@color/abc_primary_text_material_dark"
+            android:textStyle="bold"
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/emailEditText"
@@ -57,7 +69,7 @@
             android:layout_marginTop="30dp"
             android:textSize="20sp"
             android:textColor="@color/abc_primary_text_material_dark"
-            android:layout_margin="5dp" />
+            android:layout_margin="10dp" />
 
         <EditText
             android:id="@+id/passwordEditText"
@@ -69,10 +81,10 @@
             android:textColorHint="@color/abc_primary_text_material_dark"
             android:textSize="20sp"
             android:textColor="@color/abc_primary_text_material_dark"
-            android:layout_margin="5dp" />
+            android:layout_margin="10dp" />
 
         <Button
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Go!"
             android:id="@+id/goButton"
@@ -80,7 +92,7 @@
             android:background="@color/ColorAccent"
             android:layout_below="@+id/linearLayout2"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="26dp" />
+            android:layout_margin="10dp" />
     </LinearLayout>
 
 </RelativeLayout>

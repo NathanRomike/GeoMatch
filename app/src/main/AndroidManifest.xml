@@ -3,6 +3,8 @@
     package="comnathanromike.github.geomatch">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:name=".SnapMapApplication"
@@ -39,7 +41,19 @@
                 android:theme="@style/AppTheme.NoActionBar"
                 android:value=".ui.MainActivity" />
         </activity>
-        <activity android:name=".ui.PhotoDetailActivity"></activity>
+        <activity android:name=".ui.PhotoDetailActivity" />
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity
+            android:name=".ui.LocationActivity"
+            android:label="@string/title_activity_location">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="comnathanromike.github.geomatch.ui.AddClueActivity" />
+        </activity>
     </application>
 
 </manifest>

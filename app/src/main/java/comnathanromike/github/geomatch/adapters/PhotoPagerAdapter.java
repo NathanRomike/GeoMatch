@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 import comnathanromike.github.geomatch.models.PuzzlePhoto;
-import comnathanromike.github.geomatch.ui.PhotoDetailFragment;
+import comnathanromike.github.geomatch.fragments.PhotoDetailFragment;
 
 /**
  * Created by Guest on 3/29/16.

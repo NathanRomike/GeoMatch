@@ -1,4 +1,4 @@
-package comnathanromike.github.geomatch.Fragments;
+package comnathanromike.github.geomatch.fragments;
 
 
 import android.os.Bundle;
@@ -9,23 +9,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
-import comnathanromike.github.geomatch.ui.MainActivity;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class IntroFragment extends DialogFragment implements View.OnClickListener {
+    @Bind(R.id.emailEditText) EditText mEmailEditText;
+    @Bind(R.id.passwordEditText) EditText mPasswordEditText;
     @Bind(R.id.loginButton) Button mLoginButton;
     @Bind(R.id.startButton) Button mStartButton;
     @Bind(R.id.goButton) Button mGoButton;
     @Bind(R.id.next_form) RelativeLayout mNextStepsLayout;
     @Bind(R.id.login_form) LinearLayout mLoginForm;
+    @Bind(R.id.errorTextView) TextView mErrorTextView;
+
+    private Firebase mFirebaseRef;
+    private Firebase.AuthResultHandler mAuthResultHandler;
 
 
     public IntroFragment() {
@@ -45,6 +56,9 @@ public class IntroFragment extends DialogFragment implements View.OnClickListene
         mLoginButton.setOnClickListener(this);
         mStartButton.setOnClickListener(this);
         mGoButton.setOnClickListener(this);
+
+        initializeAuthResultHandler();
+
         return view;
     }
 
@@ -58,7 +72,30 @@ public class IntroFragment extends DialogFragment implements View.OnClickListene
             FragmentManager fm = getChildFragmentManager();
             LoginFragment loginFragment = LoginFragment.newInstance();
             loginFragment.show(fm, "login_fragment");
+        } else if (view == mLoginButton) {
+            loginWithPassword();
         }
 
+    }
+
+    public void loginWithPassword() {
+        String email = mEmailEditText.getText().toString();
+        String password = mPasswordEditText.getText().toString();
+        mFirebaseRef.authWithPassword(email, password, mAuthResultHandler);
+    }
+
+    private void initializeAuthResultHandler() {
+        mAuthResultHandler = new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData authData) {
+                dismiss();
+            }
+
+            @Override
+            public void onAuthenticationError(FirebaseError firebaseError) {
+                mErrorTextView.setText(firebaseError.toString());
+                mErrorTextView.setVisibility(View.VISIBLE);
+            }
+        };
     }
 }

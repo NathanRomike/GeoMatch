@@ -20,7 +20,8 @@
         android:layout_alignWithParentIfMissing="false"
         android:layout_below="@+id/imageView3"
         android:layout_alignLeft="@+id/imageView3"
-        android:layout_alignStart="@+id/imageView3">
+        android:layout_alignStart="@+id/imageView3"
+        android:id="@+id/relativeLayout">
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,6 +45,15 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:background="@color/ColorAccent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:id="@+id/locationTextView"
+        android:layout_below="@+id/relativeLayout"
+        android:layout_centerHorizontal="true"
+        android:hint="Longitude Latitude" />
 
     <EditText
         android:layout_width="300dp"
