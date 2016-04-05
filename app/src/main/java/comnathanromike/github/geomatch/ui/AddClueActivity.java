@@ -20,11 +20,16 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
 
-public class AddClueActivity extends AppCompatActivity {
+public class AddClueActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener{
 
     @Bind(R.id.addPhotoButton) Button mAddPhotoButton;
     @Bind(R.id.photoHintEditText) EditText mAddHint;
     @Bind(R.id.locationTextView) TextView mLocationTextView;
+
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
+    private Double mLatitude;
+    private Double mLongitude;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +45,43 @@ public class AddClueActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
+
+    }
+
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+        if (mLastLocation != null) {
+            mLatitude = mLastLocation.getLatitude();
+            mLongitude = mLastLocation.getLongitude();
+        }
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
 
     }
 }
