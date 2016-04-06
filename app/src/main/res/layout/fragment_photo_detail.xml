@@ -28,8 +28,20 @@
                 android:id="@+id/makeGuessButton"
                 android:layout_alignParentBottom="true"
                 android:background="@color/ColorAccent"
-                android:textColor="@color/ColorSecondaryText"
-                android:textSize="15sp" />
+                android:textColor="@color/abc_primary_text_material_dark"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateTextView"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="37dp"
+                android:textSize="25sp"
+                android:textStyle="bold"
+                android:textColor="@color/abc_primary_text_material_dark" />
         </RelativeLayout>
     </LinearLayout>
 

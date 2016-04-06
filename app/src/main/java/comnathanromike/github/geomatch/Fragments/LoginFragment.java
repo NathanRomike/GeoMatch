@@ -85,12 +85,15 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
             @Override
             public void onAuthenticated(AuthData authData) {
                 Map<String, String> map = new HashMap<String, String>();
-                map.put("provider", authData.getProvider());
-                    if(authData.getProviderData().containsKey("displayName")) {
-                        map.put("displayName", authData.getProviderData().get("displayName").toString());
-                    }
-                    mFirebaseRef.child("users").child(authData.getUid()).setValue(map);
+                map.put("userName", mNameEditText.getText().toString());
+                if(authData.getProviderData().containsKey("email")) {
+                    map.put("email", authData.getProviderData().get("email").toString());
+                }
+                mFirebaseRef.child("users").child(authData.getUid()).setValue(map);
+
                 dismiss();
+                Intent intent = new Intent(getActivity(), PuzzleListActivity.class);
+                startActivity(intent);
             }
 
             @Override
@@ -109,9 +112,6 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
             @Override
             public void onSuccess(Map<String, Object> stringObjectMap) {
                 mFirebaseRef.authWithPassword(email, password, mAuthResultHandler);
-                mErrorTextView.setText(email + ", thank you for registering!");
-                Intent intent = new Intent(getActivity(), PuzzleListActivity.class);
-                startActivity(intent);
             }
 
             @Override

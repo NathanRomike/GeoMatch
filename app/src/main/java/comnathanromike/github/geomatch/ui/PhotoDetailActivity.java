@@ -1,8 +1,11 @@
 package comnathanromike.github.geomatch.ui;
 
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
 import org.parceler.Parcels;
 
@@ -16,6 +19,7 @@ import comnathanromike.github.geomatch.models.PuzzlePhoto;
 
 public class PhotoDetailActivity extends AppCompatActivity {
     @Bind(R.id.viewPager) ViewPager mViewPager;
+
     private PhotoPagerAdapter adapterViewPager;
     ArrayList<PuzzlePhoto> mPhotos = new ArrayList<>();
 

@@ -1,10 +1,12 @@
 package comnathanromike.github.geomatch.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
@@ -15,8 +17,10 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
 import comnathanromike.github.geomatch.models.PuzzlePhoto;
+import comnathanromike.github.geomatch.ui.LocationActivity;
 
-public class PhotoDetailFragment extends Fragment {
+public class PhotoDetailFragment extends Fragment implements View.OnClickListener {
+    @Bind(R.id.makeGuessButton) Button mMakeGuessButton;
     @Bind(R.id.photoImageView) ImageView mImageMedium;
     private PuzzlePhoto mPuzzlePhoto;
 
@@ -33,7 +37,6 @@ public class PhotoDetailFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mPuzzlePhoto = Parcels.unwrap(getArguments().getParcelable("photo"));
     }
 
@@ -42,10 +45,16 @@ public class PhotoDetailFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_photo_detail, container, false);
         ButterKnife.bind(this, view);
-
+        mMakeGuessButton.setOnClickListener(this);
         Picasso.with(view.getContext())
                 .load(mPuzzlePhoto.getMediumPhotoUrl())
                 .into(mImageMedium);
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(getActivity(), LocationActivity.class);
+        startActivity(intent);
     }
 }
