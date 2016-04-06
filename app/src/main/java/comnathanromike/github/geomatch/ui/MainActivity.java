@@ -108,13 +108,4 @@ public class MainActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
-    
-    public void capturePhoto() {
-    Intent intent = new Intent(MediaStore.INTENT_ACTION_STILL_IMAGE_CAMERA);
-    if (intent.resolveActivity(getPackageManager()) != null) {
-        startActivity(intent);
-    }
-}
-
-
 }
