@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
@@ -22,6 +23,7 @@ import comnathanromike.github.geomatch.ui.LocationActivity;
 public class PhotoDetailFragment extends Fragment implements View.OnClickListener {
     @Bind(R.id.makeGuessButton) Button mMakeGuessButton;
     @Bind(R.id.photoImageView) ImageView mImageMedium;
+    @Bind(R.id.dateTextView) TextView mDateTextView;
     private PuzzlePhoto mPuzzlePhoto;
 
     public PhotoDetailFragment() {}
@@ -46,6 +48,9 @@ public class PhotoDetailFragment extends Fragment implements View.OnClickListene
         View view = inflater.inflate(R.layout.fragment_photo_detail, container, false);
         ButterKnife.bind(this, view);
         mMakeGuessButton.setOnClickListener(this);
+
+        mDateTextView.setText(mPuzzlePhoto.getPhotoId());
+
         Picasso.with(view.getContext())
                 .load(mPuzzlePhoto.getMediumPhotoUrl())
                 .into(mImageMedium);
