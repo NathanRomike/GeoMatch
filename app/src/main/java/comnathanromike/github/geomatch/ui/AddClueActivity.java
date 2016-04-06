@@ -38,6 +38,13 @@ public class AddClueActivity extends AppCompatActivity implements GoogleApiClien
 
         ButterKnife.bind(this);
 
+        Intent intent = getIntent();
+        String confirmStatus = intent.getStringExtra("confirmStatus");
+
+        if (confirmStatus == null) {
+            mAddPhotoButton.setText("Confirm Location");
+        }
+
         mAddPhotoButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

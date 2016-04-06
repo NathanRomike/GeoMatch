@@ -1,6 +1,7 @@
 package comnathanromike.github.geomatch.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -21,6 +22,7 @@ import com.firebase.client.FirebaseError;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
+import comnathanromike.github.geomatch.ui.AboutActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -69,9 +71,8 @@ public class IntroFragment extends DialogFragment implements View.OnClickListene
             mLoginForm.setVisibility(View.VISIBLE);
         } else if (view == mStartButton) {
             dismiss();
-            FragmentManager fm = getChildFragmentManager();
-            LoginFragment loginFragment = LoginFragment.newInstance();
-            loginFragment.show(fm, "login_fragment");
+            Intent intent = new Intent(getActivity(), AboutActivity.class);
+            startActivity(intent);
         } else if (view == mLoginButton) {
             loginWithPassword();
         }

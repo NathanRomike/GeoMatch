@@ -9,22 +9,6 @@
     android:focusableInTouchMode="true"
     android:focusable="false">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Snap Map"
-        android:id="@+id/textView4"
-        android:textStyle="bold"
-        android:textSize="30sp"
-        android:textColor="@color/ColorAccent"
-        android:gravity="center"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:paddingTop="55dp"
-        android:paddingBottom="55dp"
-        android:background="@color/ColorTransparent"/>
-
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -34,11 +18,22 @@
         android:paddingTop="30dp"
         android:paddingRight="10dp"
         android:paddingBottom="50dp"
+        android:id="@+id/linearLayout"
+        android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/textView4"
-        android:id="@+id/linearLayout">
+        android:layout_alignParentStart="true">
+
+        <EditText
+            android:id="@+id/nameEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"
+            android:hint="Name"
+            android:textColorHint="@color/abc_primary_text_material_dark"
+            android:layout_marginTop="30dp"
+            android:textSize="20sp"
+            android:textColor="@color/abc_primary_text_material_dark"
+            android:visibility="gone" />
 
         <EditText
             android:id="@+id/emailEditText"
@@ -47,7 +42,6 @@
             android:inputType="textEmailAddress"
             android:hint="Email"
             android:textColorHint="@color/abc_primary_text_material_dark"
-            android:layout_marginTop="30dp"
             android:textSize="20sp"
             android:textColor="@color/abc_primary_text_material_dark" />
 
@@ -63,21 +57,21 @@
             android:textColor="@color/abc_primary_text_material_dark" />
 
         <Button
-            android:id="@+id/passwordLoginButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="Log in"
-            android:background="@color/ColorAccent"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/abc_primary_text_material_dark" />
-
-        <Button
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
             android:text="Register"
+            android:background="@color/ColorAccent"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/abc_primary_text_material_dark" />
+
+        <Button
+            android:id="@+id/passwordLoginButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Log in"
             android:background="@color/ColorAccent"
             android:layout_marginTop="15dp"
             android:textColor="@color/abc_primary_text_material_dark" />

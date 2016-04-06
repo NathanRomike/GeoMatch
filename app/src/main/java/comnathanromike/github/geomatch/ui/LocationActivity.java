@@ -1,7 +1,9 @@
 package comnathanromike.github.geomatch.ui;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -36,6 +38,8 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
 
     @Bind(R.id.confirmButton) Button mConfirmButton;
 
+    private SharedPreferences mSharedPreferences;
+    private SharedPreferences.Editor mEditor;
     private GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
     private LocationRequest mLocationRequest;
@@ -47,6 +51,9 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
         setContentView(R.layout.activity_location);
 
         ButterKnife.bind(this);
+
+        mSharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
+        mEditor = mSharedPreferences.edit();
 
         mConfirmButton.setOnClickListener(this);
 
@@ -136,13 +143,20 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
 
     @Override
     public void onLocationChanged(Location location) {
+        addToSharedPreferences(location.toString());
         handleNewLocation(location);
     }
 
     @Override
     public void onClick(View view) {
+        addToSharedPreferences(mCurrentLocation.toString());
         Intent intent = new Intent(LocationActivity.this, AddClueActivity.class);
+        intent.putExtra("confirmStatus", "Confirmed");
         Log.d("Location at click!", mCurrentLocation.toString());
         startActivity(intent);
+    }
+
+    private void addToSharedPreferences(String location) {
+        mEditor.putString("location", location).commit();
     }
 }
