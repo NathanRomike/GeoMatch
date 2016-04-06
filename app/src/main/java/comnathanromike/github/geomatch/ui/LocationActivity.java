@@ -1,11 +1,17 @@
 package comnathanromike.github.geomatch.ui;
 
+import android.Manifest;
+import android.content.Intent;
 import android.location.Location;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -19,17 +25,34 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
 
-public class LocationActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener {
+public class LocationActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener, View.OnClickListener {
+    private static final String[] INITIAL_PERMS={
+            Manifest.permission.ACCESS_FINE_LOCATION
+    };
+
+    @Bind(R.id.confirmButton) Button mConfirmButton;
+
     private GoogleApiClient mGoogleApiClient;
     private GoogleMap mMap;
     private LocationRequest mLocationRequest;
+    private LatLng mCurrentLocation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_location);
+
+        ButterKnife.bind(this);
+
+        mConfirmButton.setOnClickListener(this);
+
+        int permissionCheck = ContextCompat.checkSelfPermission(LocationActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION);
+        Log.d("permission check", Integer.toString(permissionCheck));
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -42,50 +65,45 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
                 .setInterval(10 * 1000)
                 .setFastestInterval(1 * 1000);
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
     }
 
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-100, 64);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        LatLng defaultLocation = new LatLng(-45.5231, 122.6765);
+        mMap.addMarker(new MarkerOptions().position(defaultLocation).title(""));
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(defaultLocation));
     }
 
     @Override
     public void onConnected(Bundle bundle) {
-        Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
-        if (location == null) {
-            LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
-        } else {
-            handleNewLocation(location);
+        try {
+            Location location = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
+            if (location == null) {
+                LocationServices.FusedLocationApi.requestLocationUpdates(mGoogleApiClient, mLocationRequest, this);
+                handleNewLocation(location);
+            } else {
+                mCurrentLocation = new LatLng(location.getLatitude(), location.getLongitude());
+                handleNewLocation(location);
+            }
+        } catch (SecurityException e) {
+            Log.d("security exception", e.toString());
         }
     }
 
     @Override
     public void onConnectionSuspended(int i) {
-        Log.i("LAST KNOWN LOCATION", "Location services suspended");
+        Log.d("LAST KNOWN LOCATION", "Location services suspended");
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-
+        Log.d("Location failed", connectionResult.toString());
     }
 
     @Override
@@ -113,11 +131,18 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
                 .position(latLng)
                 .title("You are here!");
         mMap.addMarker(options);
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLng, 18));
     }
 
     @Override
     public void onLocationChanged(Location location) {
         handleNewLocation(location);
+    }
+
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(LocationActivity.this, AddClueActivity.class);
+        Log.d("Location at click!", mCurrentLocation.toString());
+        startActivity(intent);
     }
 }
