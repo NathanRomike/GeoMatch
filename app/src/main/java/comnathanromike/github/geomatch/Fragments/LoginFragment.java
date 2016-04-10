@@ -1,6 +1,8 @@
 package comnathanromike.github.geomatch.fragments;
 
 
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
@@ -37,6 +39,7 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
     private Firebase mFirebaseRef;
     private View view;
     private Firebase.AuthResultHandler mAuthResultHandler;
+    private ProgressDialog mAuthProgressDialog;
 
     public LoginFragment() {
         // Required empty public constructor
@@ -56,6 +59,7 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
 
         mPasswordLoginButton.setOnClickListener(this);
         mRegisterButton.setOnClickListener(this);
+        initializeProgressDialog();
         initializeAuthResultHandler();
         return view;
     }
@@ -75,6 +79,7 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
     }
 
     public void loginWithPassword() {
+        mAuthProgressDialog.show();
         String email = mEmailEditText.getText().toString();
         String password = mPasswordEditText.getText().toString();
         mFirebaseRef.authWithPassword(email, password, mAuthResultHandler);
@@ -94,16 +99,20 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
                 dismiss();
                 Intent intent = new Intent(getActivity(), PuzzleListActivity.class);
                 startActivity(intent);
+                mAuthProgressDialog.hide();
             }
 
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
-                mErrorTextView.setText(firebaseError.toString());
+                mAuthProgressDialog.hide();
+                showErrorDialog(firebaseError.toString());
+//                mErrorTextView.setText(firebaseError.toString());
             }
         };
     }
 
     public void registerNewUser() {
+        mAuthProgressDialog.show();
         final String email = mEmailEditText.getText().toString();
         final String password = mPasswordEditText.getText().toString();
 
@@ -119,5 +128,14 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
                 mErrorTextView.setText(firebaseError.toString());
             }
         });
+    }
+
+    private void showErrorDialog(String message) {
+        new AlertDialog.Builder(this.getContext())
+                .setTitle("Error")
+                .setMessage(message)
+                .setPositiveButton(android.R.string.ok, null)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .show();
     }
 }
