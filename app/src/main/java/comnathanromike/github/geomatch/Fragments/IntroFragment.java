@@ -41,9 +41,7 @@ public class IntroFragment extends DialogFragment implements View.OnClickListene
     private Firebase.AuthResultHandler mAuthResultHandler;
 
 
-    public IntroFragment() {
-        // Required empty public constructor
-    }
+    public IntroFragment() {}
 
     public static IntroFragment newInstance() {
         return new IntroFragment();

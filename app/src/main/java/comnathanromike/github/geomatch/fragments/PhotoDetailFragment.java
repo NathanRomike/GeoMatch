@@ -49,7 +49,7 @@ public class PhotoDetailFragment extends Fragment implements View.OnClickListene
         ButterKnife.bind(this, view);
         mMakeGuessButton.setOnClickListener(this);
 
-        mDateTextView.setText(mPuzzlePhoto.getPhotoId());
+        mDateTextView.setText(mPuzzlePhoto.getLatitude().toString());
 
         Picasso.with(view.getContext())
                 .load(mPuzzlePhoto.getMediumPhotoUrl())

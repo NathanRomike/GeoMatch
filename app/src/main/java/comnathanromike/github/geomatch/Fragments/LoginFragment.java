@@ -41,9 +41,7 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
     private Firebase.AuthResultHandler mAuthResultHandler;
     private ProgressDialog mAuthProgressDialog;
 
-    public LoginFragment() {
-        // Required empty public constructor
-    }
+    public LoginFragment() {}
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,15 +50,12 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
         ButterKnife.bind(this, view);
         mFirebaseRef = SnapMapApplication.getAppInstance().getFirebaseRef();
 
-        if (mFirebaseRef.getAuth() == null) {
-            mPasswordLoginButton.setVisibility(View.GONE);
-            mNameEditText.setVisibility(View.VISIBLE);
-        }
-
         mPasswordLoginButton.setOnClickListener(this);
         mRegisterButton.setOnClickListener(this);
+
         initializeProgressDialog();
         initializeAuthResultHandler();
+
         return view;
     }
 
@@ -83,6 +78,13 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
         String email = mEmailEditText.getText().toString();
         String password = mPasswordEditText.getText().toString();
         mFirebaseRef.authWithPassword(email, password, mAuthResultHandler);
+    }
+
+    private void initializeProgressDialog() {
+        mAuthProgressDialog = new ProgressDialog(this.getContext());
+        mAuthProgressDialog.setTitle("Loading");
+        mAuthProgressDialog.setMessage("Confirming authentication...");
+        mAuthProgressDialog.setCancelable(true);
     }
 
     private void initializeAuthResultHandler() {
@@ -125,7 +127,9 @@ public class LoginFragment extends DialogFragment implements View.OnClickListene
 
             @Override
             public void onError(FirebaseError firebaseError) {
-                mErrorTextView.setText(firebaseError.toString());
+                mAuthProgressDialog.hide();
+                showErrorDialog(firebaseError.toString());
+//                mErrorTextView.setText(firebaseError.toString());
             }
         });
     }

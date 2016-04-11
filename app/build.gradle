@@ -38,4 +38,5 @@ dependencies {
     compile 'com.android.support:support-v4:23.2.1'
     compile 'org.parceler:parceler-api:1.0.4'
     compile 'com.firebase:firebase-client-android:2.3.1'
+    compile 'com.commit451:PhotoView:1.2.5'
 }

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.view.View;
 import android.support.design.widget.NavigationView;
@@ -15,8 +16,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.Toast;
+
+import com.firebase.client.AuthData;
+import com.firebase.client.Firebase;
 
 import butterknife.Bind;
+import comnathanromike.github.geomatch.SnapMapApplication;
 import comnathanromike.github.geomatch.fragments.IntroFragment;
 import comnathanromike.github.geomatch.fragments.LoginFragment;
 import comnathanromike.github.geomatch.R;
@@ -24,16 +30,20 @@ import comnathanromike.github.geomatch.R;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     @Bind(R.id.mainBackgroundImg) ImageView mBackgroundImageView;
+    private Firebase mFirebaseRef;
+    private Class mNextActivity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        mFirebaseRef = SnapMapApplication.getAppInstance().getFirebaseRef();
+        checkForAuthenticatedUser();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        Picasso.with(MainActivity.this).load(R.drawable.background).into(mBackgroundImageView);
         this.getSupportActionBar().setTitle(R.string.blank_text);
         this.getSupportActionBar().setDisplayUseLogoEnabled(true);
 
@@ -41,9 +51,8 @@ public class MainActivity extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fm = getSupportFragmentManager();
-                IntroFragment introFragment = IntroFragment.newInstance();
-                introFragment.show(fm, "intro_fragment");
+                Intent intent = new Intent(MainActivity.this, mNextActivity);
+                startActivity(intent);
             }
         });
 
@@ -55,6 +64,17 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    private void checkForAuthenticatedUser() {
+        AuthData authData = mFirebaseRef.getAuth();
+        if (authData == null) {
+            Toast.makeText(this, "Welcome New User!", Toast.LENGTH_LONG).show();
+            mNextActivity = AboutActivity.class;
+        } else {
+            Toast.makeText(this, "Welcome Back!", Toast.LENGTH_SHORT).show();
+            mNextActivity = PuzzleListActivity.class;
+        }
     }
 
     @Override

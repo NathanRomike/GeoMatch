@@ -33,7 +33,7 @@
             android:layout_marginTop="30dp"
             android:textSize="20sp"
             android:textColor="@color/abc_primary_text_material_dark"
-            android:visibility="gone" />
+            android:visibility="visible" />
 
         <EditText
             android:id="@+id/emailEditText"
@@ -61,7 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Register"
+            android:text="Create new account"
             android:background="@color/ColorAccent"
             android:layout_marginTop="15dp"
             android:textColor="@color/abc_primary_text_material_dark" />
@@ -71,7 +71,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="Log in"
+            android:text="Sign in"
             android:background="@color/ColorAccent"
             android:layout_marginTop="15dp"
             android:textColor="@color/abc_primary_text_material_dark" />

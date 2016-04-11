@@ -25,24 +25,24 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity android:name=".ui.AddClueActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:theme="@style/AppTheme.NoActionBar"
-                android:value=".ui.MainActivity" />
+                android:value=".ui.PuzzleListActivity" />
         </activity>
-        <activity android:name=".ui.PuzzleListActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:theme="@style/AppTheme.NoActionBar"
-                android:value=".ui.MainActivity" />
-        </activity>
+
+        <activity android:name=".ui.PuzzleListActivity"/>
+
+
         <activity android:name=".ui.AboutActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:theme="@style/AppTheme.NoActionBar"
                 android:value=".ui.MainActivity" />
         </activity>
+
         <activity android:name=".ui.PhotoDetailActivity" />
 
         <meta-data
