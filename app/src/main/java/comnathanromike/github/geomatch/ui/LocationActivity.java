@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.firebase.client.Firebase;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -30,6 +31,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
+import comnathanromike.github.geomatch.SnapMapApplication;
 
 public class LocationActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener, LocationListener, View.OnClickListener {
     private static final String[] INITIAL_PERMS={
@@ -44,6 +46,9 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
     private GoogleMap mMap;
     private LocationRequest mLocationRequest;
     private LatLng mCurrentLocation;
+    private Firebase mFirebaseRef;
+    private String mPhotoId;
+    private String mCurrentUserUid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,8 +57,12 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
 
         ButterKnife.bind(this);
 
+        Intent intent = getIntent();
+        mPhotoId = intent.getStringExtra("photoId");
         mSharedPreferences = this.getSharedPreferences(getString(R.string.preference_file_key), Context.MODE_PRIVATE);
         mEditor = mSharedPreferences.edit();
+        mFirebaseRef = SnapMapApplication.getAppInstance().getFirebaseRef();
+        mCurrentUserUid = mFirebaseRef.getAuth().getUid();
 
         mConfirmButton.setOnClickListener(this);
 
@@ -150,9 +159,11 @@ public class LocationActivity extends FragmentActivity implements OnMapReadyCall
     @Override
     public void onClick(View view) {
         addToSharedPreferences(mCurrentLocation.toString());
-        Intent intent = new Intent(LocationActivity.this, AddClueActivity.class);
+        mFirebaseRef.child("photos/" + mPhotoId + "/").child(mCurrentUserUid + "/")
+                .setValue(mCurrentLocation);
+        Toast.makeText(LocationActivity.this, "Your guess has been saved.", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(LocationActivity.this, PuzzleListActivity.class);
         intent.putExtra("confirmStatus", "Confirmed");
-        Log.d("Location at click!", mCurrentLocation.toString());
         startActivity(intent);
     }
 

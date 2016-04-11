@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import org.parceler.Parcels;
@@ -47,17 +48,17 @@ public class PhotoDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_photo_detail, container, false);
+        final View view = inflater.inflate(R.layout.fragment_photo_detail, container, false);
         ButterKnife.bind(this, view);
         mMakeGuessButton.setOnClickListener(this);
 
         mDateTextView.setText(mPuzzlePhoto.getLatitude().toString());
 
+        mAttacher = new PhotoViewAttacher(mImageMedium);
+
         Picasso.with(view.getContext())
                 .load(mPuzzlePhoto.getMediumPhotoUrl())
                 .into(mImageMedium);
-
-        mAttacher = new PhotoViewAttacher(mImageMedium);
 
         return view;
     }
@@ -65,6 +66,7 @@ public class PhotoDetailFragment extends Fragment implements View.OnClickListene
     @Override
     public void onClick(View view) {
         Intent intent = new Intent(getActivity(), LocationActivity.class);
+        intent.putExtra("photoId", mPuzzlePhoto.getPhotoId());
         startActivity(intent);
     }
 }

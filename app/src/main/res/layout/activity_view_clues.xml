@@ -4,11 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.PuzzleListActivity"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/recyclerView"/>
+        android:id="@+id/recyclerView"
+        android:layout_gravity="center"
+        android:scrollIndicators="right" />
 
 </LinearLayout>

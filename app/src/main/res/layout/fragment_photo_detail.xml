@@ -4,43 +4,43 @@
     android:layout_height="wrap_content"
     tools:context=".fragments.PhotoDetailFragment">
 
-    <RelativeLayout
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/photoImageView"
-            android:src="@drawable/portland"
-            android:scaleType="center"
-            android:layout_centerHorizontal="true" />
+        android:id="@+id/photoImageView"
+        android:scaleType="centerCrop"
+        android:layout_centerInParent="true"
+        android:layout_alignParentEnd="false"
+        android:src="@android:drawable/picture_frame"
+        android:cropToPadding="false"
+        android:minHeight="500dp"
+        android:minWidth="500dp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Make Guess"
-            android:id="@+id/makeGuessButton"
-            android:background="@color/ColorAccent"
-            android:textColor="@color/abc_primary_text_material_dark"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:padding="10dp"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Make Guess"
+        android:id="@+id/makeGuessButton"
+        android:background="@color/ColorAccent"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/dateTextView"
-            android:layout_alignParentTop="false"
-            android:textSize="15sp"
-            android:textColor="@color/abc_primary_text_material_dark"
-            android:layout_alignTop="@+id/photoImageView"
-            android:background="@color/ColorPrimary"
-            android:padding="5dp"
-            android:textStyle="normal"
-            android:visibility="gone" />
-    </RelativeLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/dateTextView"
+        android:layout_alignParentTop="false"
+        android:textSize="15sp"
+        android:textColor="@color/abc_primary_text_material_dark"
+        android:layout_alignTop="@+id/photoImageView"
+        android:background="@color/ColorPrimary"
+        android:padding="5dp"
+        android:textStyle="normal"
+        android:visibility="gone" />
 
 </RelativeLayout>

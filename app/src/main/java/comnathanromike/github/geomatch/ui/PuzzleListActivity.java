@@ -3,6 +3,7 @@ package comnathanromike.github.geomatch.ui;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
@@ -52,7 +53,7 @@ public class PuzzleListActivity extends AppCompatActivity {
         mFirebaseRef = SnapMapApplication.getAppInstance().getFirebaseRef();
         mAdapter = new PhotoListAdapter(getApplicationContext(), mPhotos);
         mRecyclerView.setAdapter(mAdapter);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(PuzzleListActivity.this);
+        RecyclerView.LayoutManager layoutManager = new GridLayoutManager(this, 3);
         mRecyclerView.setLayoutManager(layoutManager);
         mRecyclerView.setHasFixedSize(true);
 
