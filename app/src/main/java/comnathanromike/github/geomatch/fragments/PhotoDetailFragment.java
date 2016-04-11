@@ -19,11 +19,13 @@ import butterknife.ButterKnife;
 import comnathanromike.github.geomatch.R;
 import comnathanromike.github.geomatch.models.PuzzlePhoto;
 import comnathanromike.github.geomatch.ui.LocationActivity;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 public class PhotoDetailFragment extends Fragment implements View.OnClickListener {
     @Bind(R.id.makeGuessButton) Button mMakeGuessButton;
     @Bind(R.id.photoImageView) ImageView mImageMedium;
     @Bind(R.id.dateTextView) TextView mDateTextView;
+    PhotoViewAttacher mAttacher;
     private PuzzlePhoto mPuzzlePhoto;
 
     public PhotoDetailFragment() {}
@@ -54,6 +56,9 @@ public class PhotoDetailFragment extends Fragment implements View.OnClickListene
         Picasso.with(view.getContext())
                 .load(mPuzzlePhoto.getMediumPhotoUrl())
                 .into(mImageMedium);
+
+        mAttacher = new PhotoViewAttacher(mImageMedium);
+
         return view;
     }
 
