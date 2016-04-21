@@ -1,6 +1,6 @@
 # SnapMap for Android
 
-##### 3.18.2016.
+##### 3.18.2016
 
 #### By **Nathan Romike**
 
